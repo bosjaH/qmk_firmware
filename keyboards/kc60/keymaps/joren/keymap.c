@@ -16,7 +16,7 @@ enum layer_id {
 
 // Keycodes
 enum custom_keycodes {
-    CK_LOCKEXT = SAFE_RANGE
+    C_LCKEXT = SAFE_RANGE
 }
 
 // Fillers to make layering more clear
@@ -41,6 +41,7 @@ enum custom_keycodes {
 #define M_GT LSFT(KC_NUBS)          // >
 #define M_WRDL LCTL(KC_LEFT)        // Word left
 #define M_WRDR LCTL(KC_RIGHT)       // Word right
+#define M_TM LCTL(LSFT(KC_ESC))     // Task manager
 
 
 // Enable these functions using FUNC(n) macro.
@@ -155,9 +156,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
   [L_EXTENDED] = LAYOUT(
         KC_GRV,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_DEL, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______, \
+        C_LCKEXT, ______,   ______,   ______,   ______,   M_TM,     KC_CALC,  KC_HOME,  KC_UP,    KC_END,   ______,   KC_PSCR,  KC_PAUSE, KC_INS, \
         ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,             ______, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,                       ______, \
+        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   KC_VOLD,  KC_VOLU,  KC_MUTE,                      ______, \
         ______,   ______,   ______,                       ______,                                 ______,   ______,   ______,   ______,   ______ \
   ),
     // KEYMAP_ANSI(

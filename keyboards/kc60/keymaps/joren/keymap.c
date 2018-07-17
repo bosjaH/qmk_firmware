@@ -1,5 +1,8 @@
 
 #include QMK_KEYBOARD_H
+#include "keymap_common.h"
+#include "action_code.h"
+#include "action_layer.h"
 
 // Layers
 enum layer_id {
@@ -9,48 +12,41 @@ enum layer_id {
     L_SPACE_FN,
     L_EXTENDED,
     L_EXTENDED_LOCK,
-    L_BROWSING,
     L_NUMPAD,
     L_CONFIG
 };
 
 // Keycodes
 enum custom_keycodes {
-    C_LCKEXT = SAFE_RANGE
+    C_LCKEXT = SAFE_RANGE,
+    C_UNLEXT
 }
 
 // Fillers to make layering more clear
 #define ______ KC_TRNS
 #define XXXXXX KC_NO
 
-// Func macro definitions.
-#define S_LED   FUNC(0)
-#define S_LEDI  FUNC(1)
-#define S_LEDD  FUNC(2)
-
 // Macros
-#define M_PIPE LCTL(LALT(KC_1))     // |
-#define M_AT LCTL(LALT(KC_2))       // @
-#define M_HASH LCTL(LALT(KC_3))     // #
-#define M_LCBR LCTL(LALT(KC_9))     // {
-#define M_RCBR LCTL(LALT(KC_0))     // }
-#define M_BSLS LCTL(LALT(KC_NUBS))  // Backslash
-#define M_LBRC LCTL(LALT(KC_LBRC))  // [
-#define M_RBRC LCTL(LALT(KC_RBRC))  // ]
-#define M_LT KC_NUBS                // <
-#define M_GT LSFT(KC_NUBS)          // >
-#define M_WRDL LCTL(KC_LEFT)        // Word left
-#define M_WRDR LCTL(KC_RIGHT)       // Word right
-#define M_TM LCTL(LSFT(KC_ESC))     // Task manager
+#define M_PIPE  LCTL(LALT(KC_1))     // |
+#define M_AT    LCTL(LALT(KC_2))     // @
+#define M_HASH  LCTL(LALT(KC_3))     // #
+#define M_LCBR  LCTL(LALT(KC_9))     // {
+#define M_RCBR  LCTL(LALT(KC_0))     // }
+#define M_BSLS  LCTL(LALT(KC_NUBS))  // Backslash
+#define M_LBRC  LCTL(LALT(KC_LBRC))  // [
+#define M_RBRC  LCTL(LALT(KC_RBRC))  // ]
+#define M_LT    KC_NUBS              // <
+#define M_GT    LSFT(KC_NUBS)        // >
+#define M_WRDL  LCTL(KC_LEFT)        // Word left
+#define M_WRDR  LCTL(KC_RIGHT)       // Word right
+#define M_TM    LCTL(LSFT(KC_ESC))   // Task manager
 
+// Special
+#define S_LEDT  ACTION_BACKLIGHT_TOGGLE()
+#define S_LEDI  ACTION_BACKLIGHT_INCREASE()
+#define S_LEDD  ACTION_BACKLIGHT_DECREASE()
 
-// Enable these functions using FUNC(n) macro.
-const uint16_t PROGMEM fn_actions[] = {
-  [0] = ACTION_BACKLIGHT_TOGGLE(),
-  [1] = ACTION_BACKLIGHT_INCREASE(),
-  [2] = ACTION_BACKLIGHT_DECREASE()
- };
-
+// Keymaps
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* Keymap 0: Default Layer (using ISO backslash)
      * Keymap 1: Default Layer (using ANSI backslash)
@@ -133,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ______,   M_PIPE,   M_AT,     M_HASH,   ______,   ______,   ______,   ______,   ______,   M_LCBR,   M_RCBR,   ______,   ______,   KC_DEL, \
         ______,   ______,   ______,   ______,   ______,   KC_BTN4,  KC_BTN5,  KC_HOME,  KC_UP,    KC_END,   ______,   M_LBRC,   M_RBRC,   M_BSLS, \
         KC_CAPS,  ______,   ______,   ______,   ______,   ______,   KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, ______,   ______,             ______, \
-        ______,   ______,   ______,   ______,   KC_SPC,   KC_SPC,   KC_SPC,   KC_PGDN,  M_WRDL,   M_WRDR,   ______,                       ______, \
+        ______,   ______,   ______,   KC_SPC,   KC_SPC,   KC_SPC,   KC_PGDN,  M_WRDL,   M_WRDR,   ______,   ______,                    ______, \
         ______,   ______,   ______,                       ______,                                 ______,   ______,   ______,   ______,   ______ \
     ),
 
@@ -147,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |        |   |   |   |   |   |PgD|   |VDn|VUp|VMt|          |
      * |-----------------------------------------------------------|
-     * |    |    |    |         Space          |    |BrFN|NpFN|    |
+     * |    |    |    |         Space          |    |    |NpFN|    |
      * `-----------------------------------------------------------'
      * Mb: Mouse Button
      * Wh: Mouse Wheel
@@ -156,10 +152,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
   [L_EXTENDED] = LAYOUT(
         KC_GRV,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_DEL, \
-        C_LCKEXT, ______,   ______,   ______,   ______,   M_TM,     KC_CALC,  KC_HOME,  KC_UP,    KC_END,   ______,   KC_PSCR,  KC_PAUSE, KC_INS, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,             ______, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   KC_VOLD,  KC_VOLU,  KC_MUTE,                      ______, \
-        ______,   ______,   ______,                       ______,                                 ______,   ______,   ______,   ______,   ______ \
+        C_LCKEXT, KC_BTN4,  KC_WH_U,  KC_BTN5,   ______,   M_TM,     KC_CALC,  KC_HOME,  KC_UP,    KC_END,   ______,   KC_PSCR,  KC_PAUSE, KC_INS, \
+        ______,   KC_WH_L,  KC_WH_D,  KC_WH_R,   ______,   ______,   KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, ______,   ______,             ______, \
+        ______,   ______,   ______,   ______,   ______,   ______,   KC_PGDN,  ______,   KC_VOLD,  KC_VOLU,  KC_MUTE,                      ______, \
+        ______,   ______,   ______,                       ______,                                 ______,   ______,   ______,TG(L_NUMPAD),______ \
   ),
     // KEYMAP_ANSI(
     //     GRV ,  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12, DEL, \
@@ -184,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_EXTENDED_LOCK] = LAYOUT(
         KC_ESC,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,    \
         KC_TAB,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,    \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,             KC_ENT, \
+        C_UNLEXT, ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,             KC_ENT, \
         ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,                       ______,    \
         ______,   ______,   ______,                        ______,                                ______,   ______,   KC_RGUI,  KC_APP,   ______ \
   ),
@@ -194,29 +190,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //     FN9 ,______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,         ENT, \
     //     ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,             ______,    \
     //     ______,   ______,   ______,             ______,                       ______,   RGUI, APP,______),
-
-    /* Overlay: Browsing Layer
-     * ,-----------------------------------------------------------.
-     * |   | F1| F2| F3| F4| F5| F6| F7| F8| F9|F10|F11|F12|       |
-     * |-----------------------------------------------------------|
-     * |     |Mb4|Mb5|   |   |   |   |Mb4|MwU|Mb5|   |   |   |     |
-     * |-----------------------------------------------------------|
-     * |      |   |   |   |   |   |PgU|MwL|MwD|MwR|   |   |        |
-     * |-----------------------------------------------------------|
-     * |        |   |   |   |   |   |PgD|   |   |   |   |          |
-     * |-----------------------------------------------------------|
-     * |    |    |    |         Space          |    |    |    |Exit|
-     * `-----------------------------------------------------------'
-     * Mb: Mouse Button
-     * Mw: Mouse Wheel
-     */
-  [L_BROWSING] = LAYOUT(
-        ______,   KC_F1 ,KC_F2 ,KC_F3 ,KC_F4 ,KC_F5 ,KC_F6 ,KC_F7 ,KC_F8 ,KC_F9 ,KC_F10,KC_F11,KC_F12,______,    \
-        ______,   KC_BTN4,KC_BTN5,______,   ______,   ______,   ______,   KC_BTN4,KC_WH_U,KC_BTN5,______,   ______,   ______,   ______,    \
-        ______,   ______,   ______,   ______,   ______,   ______,   KC_PGUP,KC_WH_L,KC_WH_D,KC_WH_R,______,   ______,          ______,    \
-        ______,   ______,   ______,   ______,   ______,   ______,   KC_PGDN,______,   ______,   ______,   ______,                 ______,    \
-        ______,   ______,   ______,                        ______,                        ______,   ______,   ______,   ______),
-  ),
 
     /* Overlay: Numpad
      * ,-----------------------------------------------------------.
@@ -235,11 +208,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * Mc: Mouse Cursor
      */
   [L_NUMPAD] = LAYOUT(
-        ______,   KC_P1 ,KC_P2 ,KC_P3 ,KC_P4 ,KC_P5 ,KC_P6 ,KC_P7 ,KC_P8 ,KC_P9 ,KC_P0 ,KC_PMNS,KC_PPLS,KC_BSPC, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,             KC_PENT, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,                       ______, \
-        ______,   ______,   ______,                       ______,                                 ______,   ______,   ______,   ______,   ______ \
+        ______,   KC_P1,    KC_P2,    KC_P3,    KC_P4,    KC_P5,    KC_P6,    KC_P7,    KC_P8,    KC_P9,    KC_P0,    KC_PMNS,  KC_PPLS,  KC_BSPC, \
+        ______,   ______,   ______,   ______,   ______,   ______,   KC_PMNS,  KC_P7,    KC_P8,    KC_P9,    KC_PSLS,  ______,   ______,   ______, \
+        ______,   ______,   ______,   ______,   ______,   ______,   KC_PPLS,  KC_P4,    KC_P5,    KC_P6,    KC_PAST,  ______,             KC_PENT, \
+        ______,   ______,   ______,   ______,   ______,   ______,   KC_PDOT,  KC_P1,    KC_P2,    KC_P3,    ______,                       KC_PENT, \
+        ______,   ______,   ______,                       KC_P0,                                  KC_PDOT,  ______,   ______,   ______,   KC_NLCK \
   ),
     // KEYMAP_ANSI(
     //     ______,   KP_1,KP_2,KP_3,KP_4,KP_5,KP_6,KP_7,KP_8,KP_9,KP_0,PMNS,PPLS,BSPC, \
@@ -271,32 +244,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-  // MACRODOWN only works in this function
-  return MACRO_NONE;
-};
-
 uint32_t layer_state_set_user(uint32_t state) {
-
     return state;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case FOO:
+    case C_LCKEXT:
       if (record->event.pressed) {
-        // Do something when pressed
-      } else {
-        // Do something else when release
+        layer_on(L_EXTENDED_LOCK);
       }
-      return false; // Skip all further processing of this key
-    case KC_ENTER:
+      return false;
+    case C_UNLEXT:
       // Play a tone when enter is pressed
-      if (record->event.pressed) {
-        PLAY_NOTE_ARRAY(tone_qwerty);
+      if (record->event.release) {
+        layer_off(L_EXTENDED_LOCK);
+        layer_off(L_EXTENDED);
       }
-      return true; // Let QMK send the enter press/release events
+      return false; // Let QMK send the enter press/release events
     default:
       return true; // Process all other keycodes normally
   }

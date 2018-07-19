@@ -21,7 +21,10 @@ enum custom_keycodes {
     C_CLSEXT,
     C_AACUTE,
     C_AGRAVE,
-    C_TILDE
+    C_TILDE,
+    C_BL_TG,
+    C_BL_IC,
+    C_BL_DC
 };
 
 // Fillers to make layering clearer
@@ -47,12 +50,22 @@ enum custom_keycodes {
 #define FN_SPACE_FN LT(L_SPACE_FN, KC_SPC)
 #define FN_EXT      MO(L_EXTENDED)
 #define FN_NUM      TG(L_NUMPAD)
+#define FN_GAME     TG(L_GAME)
+#define FN_CONFIG   MO(L_CONFIG)
+#define DL_ISO      DF(L_DEFAULT)
+#define DL_ANSI     DF(L_DEFAULT_ANSI)
 
+// Func macro definitions.
+#define S_LED   FUNC(0)
+#define S_LEDI  FUNC(1)
+#define S_LEDD  FUNC(2)
 
-// Special
-#define S_LEDT  ACTION_BACKLIGHT_TOGGLE()
-#define S_LEDI  ACTION_BACKLIGHT_INCREASE()
-#define S_LEDD  ACTION_BACKLIGHT_DECREASE()
+// Enable these functions using FUNC(n) macro.
+const uint16_t PROGMEM fn_actions[] = {
+  [0] = ACTION_BACKLIGHT_TOGGLE(),
+	[1] = ACTION_BACKLIGHT_INCREASE(),
+	[2] = ACTION_BACKLIGHT_DECREASE()
+ };
 
 // Keymaps
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -161,7 +174,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_EXTENDED] = LAYOUT_60_ansi(
         KC_GRV,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_DEL, \
         C_LCKEXT, KC_BTN4,  KC_WH_U,  KC_BTN5,  ______,   M_TM,     KC_CALC,  KC_HOME,  KC_UP,    KC_END,   ______,   KC_PSCR,  KC_PAUSE, KC_INS, \
-        ______,   KC_WH_L,  KC_WH_D,  KC_WH_R,  ______,   ______,   KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, ______,   ______,             ______, \
+        ______,   KC_WH_L,  KC_WH_D,  KC_WH_R,  ______,   ______,   KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, ______,   ______,          FN_CONFIG, \
         ______,   ______,   ______,   ______,   ______,   ______,   KC_PGDN,  ______,   KC_VOLD,  KC_VOLU,  KC_MUTE,                      ______, \
         ______,   ______,   ______,                       ______,                                           ______,   ______,   FN_NUM,   ______  \
   ),
@@ -184,7 +197,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______, \
         C_CLSEXT, ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,             KC_ENT, \
         ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,                       ______, \
-        ______,   ______,   ______,                        ______,                                          ______,   KC_RGUI,  KC_APP,   ______  \
+        ______,   ______,   ______,                       ______,                                           ______,   KC_RGUI,  KC_APP,   ______  \
   ),
 
     /* Overlay: Numpad
@@ -213,11 +226,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* Overlay: Layout selection layer
      * ,-----------------------------------------------------------.
-     * |   |Gm |   |   |   |   |   |   |   |   |   |ISO|ANS|BootLdr|
+     * |   |ISO|ANS|   |   |   |   |   |   |   |   |   |   |BootLdr|
      * |-----------------------------------------------------------|
      * |     |   |   |   |   |   |   |   |   |   |   |   |   |     |
      * |-----------------------------------------------------------|
-     * |      |   |   |   |   |   |   |   |   |   |   |   |ConfigFN|
+     * |      |   |   |   |   |Gm |   |   |   |   |   |   |ConfigFN|
      * |-----------------------------------------------------------|
      * |        |   |   |   |   |   |   |   |   |   |   |          |
      * |-----------------------------------------------------------|
@@ -226,10 +239,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * Gm: Game
      */
   [L_CONFIG] = LAYOUT_60_ansi(
+        ______,   DL_ISO,   DL_ANSI,  ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   RESET,  \
         ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,             ______, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,                       ______, \
+        ______,   ______,   ______,   ______,   ______,   FN_GAME,  ______,   ______,   ______,   ______,   ______,   ______,          FN_CONFIG, \
+        ______,   S_LEDD,   S_LEDI,   S_LED,    ______,   ______,   ______,   ______,   ______,   ______,   ______,                       ______, \
         ______,   ______,   ______,                       ______,                                           ______,   ______,   ______,   ______ \
   )
 };
@@ -255,7 +268,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         SEND_STRING(SS_LCTRL(SS_LALT(SS_TAP(X_QUOTE))));
         SEND_STRING(SS_TAP(X_SPACE));
-      }&
+      }
       return false;
     case C_AGRAVE:
       if (record->event.pressed) {

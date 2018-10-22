@@ -1,2 +1,2 @@
 @echo off
-../../../../../docker-build.cmd pegasushoof joren
+../../../../../docker-build.cmd bpiphany/pegasushoof joren

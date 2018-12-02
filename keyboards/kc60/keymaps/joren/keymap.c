@@ -32,14 +32,14 @@ enum custom_keycodes {
 #define XXXXXX KC_NO
 
 // Macros
-#define M_PIPE  LCTL(LALT(KC_1))     // |
-#define M_AT    LCTL(LALT(KC_2))     // @
-#define M_HASH  LCTL(LALT(KC_3))     // #
-#define M_LCBR  LCTL(LALT(KC_9))     // {
-#define M_RCBR  LCTL(LALT(KC_0))     // }
-#define M_BSLS  LCTL(LALT(KC_NUBS))  // Backslash
-#define M_LBRC  LCTL(LALT(KC_LBRC))  // [
-#define M_RBRC  LCTL(LALT(KC_RBRC))  // ]
+#define M_PIPE  RALT(KC_1)           // |
+#define M_AT    RALT(KC_2)           // @
+#define M_HASH  RALT(KC_3)           // #
+#define M_LCBR  RALT(KC_9)           // {
+#define M_RCBR  RALT(KC_0)           // }
+#define M_BSLS  RALT(KC_NUBS)        // Backslash
+#define M_LBRC  RALT(KC_LBRC)        // [
+#define M_RBRC  RALT(KC_RBRC)        // ]
 #define M_LT    KC_NUBS              // <
 #define M_GT    LSFT(KC_NUBS)        // >
 #define M_WRDL  LCTL(KC_LEFT)        // Word left

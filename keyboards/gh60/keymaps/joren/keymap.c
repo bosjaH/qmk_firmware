@@ -41,11 +41,14 @@ enum custom_keycodes {
 #define M_GT    LSFT(KC_NUBS)        // >
 #define M_WRDL  LCTL(KC_LEFT)        // Word left
 #define M_WRDR  LCTL(KC_RIGHT)       // Word right
+#define M_VDL   LCTL(LGUI(KC_LEFT))  // Previous virtual desktop
+#define M_VDR   LCTL(LGUI(KC_RIGHT)) // Next virtual desktop
 #define M_TM    LCTL(LSFT(KC_ESC))   // Task manager
+#define M_EUR   RALT(KC_E)           // Euro sign
 
 // Layer switching
 #define FN_SPACE_FN LT(L_SPACE_FN, KC_SPC)
-#define FN_EXT      MO(L_EXTENDED)
+#define FN_EXT      LT(L_EXTENDED, KC_GRV)
 #define FN_NUM      TG(L_NUMPAD)
 #define FN_GAME     TG(L_GAME)
 #define FN_CONFIG   MO(L_CONFIG)
@@ -122,9 +125,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------.
      * |   |  ||  @|  #|   |   |   |   |   |  {|  }|   |   | Delete|
      * |-----------------------------------------------------------|
-     * |     |   |   |  [|  ]|Mb4|Mb5|Hom|Up |End|   |  [|  ]|    \|
+     * |     |   |   | € |   |Mb4|Mb5|Hom|Up |End|   |  [|  ]|    \|
      * |-----------------------------------------------------------|
-     * |CAPS  |   |   |  {|  }|   |PgU|Lef|Dow|Rig|  ´|  `|        |
+     * |CAPS  |   |   |VDL|VDR|   |PgU|Lef|Dow|Rig|  ´|  `|        |
      * |-----------------------------------------------------------|
      * |        |   |   |Spc|Spc|Spc|PgD|WLe|WRi|   |  ~|          |
      * |-----------------------------------------------------------|
@@ -134,8 +137,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
   [L_SPACE_FN] = LAYOUT_60_ansi(
         ______,   M_PIPE,   M_AT,     M_HASH,   ______,   ______,   ______,   ______,   ______,   M_LCBR,   M_RCBR,   ______,   ______,   KC_DEL, \
-        ______,   ______,   ______,   KC_WH_U,  ______,   KC_BTN4,  KC_BTN5,  KC_HOME,  KC_UP,    KC_END,   ______,   M_LBRC,   M_RBRC,   M_BSLS, \
-        KC_CAPS,  ______,   KC_WH_L,  KC_WH_D,  KC_WH_R,  ______,   KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, C_AACUTE, C_AGRAVE,           ______, \
+        ______,   ______,   ______,   M_EUR,    ______,   KC_BTN4,  KC_BTN5,  KC_HOME,  KC_UP,    KC_END,   ______,   M_LBRC,   M_RBRC,   M_BSLS, \
+        KC_CAPS,  ______,   ______,   M_VDL,    M_VDR,    ______,   KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, C_AACUTE, C_AGRAVE,           ______, \
         ______,   ______,   ______,   KC_SPC,   KC_SPC,   KC_SPC,   KC_PGDN,  M_WRDL,   M_WRDR,   ______,   C_TILDE,                      ______, \
         ______,   ______,   ______,                       ______,                                           ______,   ______,   ______,   ______ \
     ),
@@ -160,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_EXTENDED] = LAYOUT_60_ansi(
         KC_GRV,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_DEL, \
         C_LCKEXT, KC_BTN4,  KC_WH_U,  KC_BTN5,  ______,   M_TM,     KC_CALC,  KC_HOME,  KC_UP,    KC_END,   ______,   KC_PSCR,  KC_PAUSE, KC_INS, \
-        ______,   KC_WH_L,  KC_WH_D,  KC_WH_R,  ______,   ______,   KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, ______,   ______,          FN_CONFIG, \
+        ______,   KC_WH_L,  KC_WH_D,  KC_WH_R,  ______,   ______,   KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, ______,   KC_NUHS,         FN_CONFIG, \
         ______,   ______,   ______,   ______,   ______,   ______,   KC_PGDN,  ______,   KC_VOLD,  KC_VOLU,  KC_MUTE,                      ______, \
         ______,   ______,   ______,                       ______,                                           ______,   ______,   FN_NUM,   ______  \
   ),

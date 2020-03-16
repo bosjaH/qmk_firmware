@@ -45,10 +45,12 @@ enum custom_keycodes {
 #define M_VDR   LCTL(LGUI(KC_RIGHT)) // Next virtual desktop
 #define M_TM    LCTL(LSFT(KC_ESC))   // Task manager
 #define M_EUR   RALT(KC_E)           // Euro sign
+#define MT_LSM4 LSFT_T(KC_BTN4)
+#define MT_RSM5 RSFT_T(KC_BTN5)
 
 // Layer switching
 #define FN_SPACE_FN LT(L_SPACE_FN, KC_SPC)
-#define FN_EXT      LT(L_EXTENDED, KC_GRV)
+#define FN_EXT      LT(L_EXTENDED, KC_BSPC)
 #define FN_NUM      TG(L_NUMPAD)
 #define FN_GAME     TG(L_GAME)
 #define FN_CONFIG   MO(L_CONFIG)
@@ -76,14 +78,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,   KC_1,     KC_2,     KC_3,    KC_4,     KC_5,     KC_6,     KC_7,    KC_8,  KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,  \
         KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,     KC_T,     KC_Y,     KC_U,    KC_I,  KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_NUBS,  \
         FN_EXT,   KC_A,     KC_S,     KC_D,    KC_F,     KC_G,     KC_H,     KC_J,    KC_K,  KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,   \
-        KC_LSFT,  KC_Z,     KC_X,    KC_C,     KC_V,     KC_B,     KC_N,     KC_M,  KC_COMM, KC_DOT,   KC_SLSH,                      KC_RSFT,  \
+        MT_LSM4,  KC_Z,     KC_X,    KC_C,     KC_V,     KC_B,     KC_N,     KC_M,  KC_COMM, KC_DOT,   KC_SLSH,                      MT_RSM5,  \
         KC_LCTL,  KC_LGUI,  KC_LALT,                            FN_SPACE_FN,                           KC_RALT,  KC_RGUI,  KC_APP,   KC_RCTL   \
     ),
   [L_DEFAULT_ANSI] = LAYOUT_60_ansi(
         KC_ESC,   KC_1,     KC_2,     KC_3,    KC_4,     KC_5,     KC_6,     KC_7,    KC_8,  KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,  \
         KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,     KC_T,     KC_Y,     KC_U,    KC_I,  KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,  \
         FN_EXT,   KC_A,     KC_S,     KC_D,    KC_F,     KC_G,     KC_H,     KC_J,    KC_K,  KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,   \
-        KC_LSFT,  KC_Z,     KC_X,    KC_C,     KC_V,     KC_B,     KC_N,     KC_M,  KC_COMM, KC_DOT,   KC_SLSH,                      KC_RSFT,  \
+        MT_LSM4,  KC_Z,     KC_X,    KC_C,     KC_V,     KC_B,     KC_N,     KC_M,  KC_COMM, KC_DOT,   KC_SLSH,                      MT_RSM5,  \
         KC_LCTL,  KC_LGUI,  KC_LALT,                            FN_SPACE_FN,                           KC_RALT,  KC_RGUI,  KC_APP,   KC_RCTL   \
     ),
 
@@ -95,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |      |   |   |   |   |   |   |   |   |   |   |   |        |
      * |-----------------------------------------------------------|
-     * |        |   |   |   |   |   |   |   |   |   |   |          |
+     * | Shift  |   |   |   |   |   |   |   |   |   |   | Shift    |
      * |-----------------------------------------------------------|
      * |    | NO |    |         Space          |    |    |NpFN|    |
      * `-----------------------------------------------------------'
@@ -104,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   KC_BSPC, \
         ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,  \
         ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,             ______,  \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,                       ______,  \
+        KC_LSFT,  ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,                       KC_RSFT, \
         ______,   XXXXXX,   ______,                       KC_SPC,                                           ______,   ______,   FN_NUM,   ______   \
     ),
 

@@ -60,6 +60,7 @@ enum custom_keycodes {
 
 // Layer switching
 #define FN_SPACE_FN LT(L_SPACE_FN, KC_SPC)
+#define FN_NAV_D    LT(L_NAVIGATION, KC_D)
 #define FN_NAV_F    LT(L_NAVIGATION, KC_F)
 #define FN_NAV_SC   LT(L_NAVIGATION, KC_SCLN)
 #define FN_EXT      LT(L_EXTENDED, KC_BSPC)
@@ -90,16 +91,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_DEFAULT] = LAYOUT_60_ansi(
         KC_ESC,   KC_1,     KC_2,     KC_3,    KC_4,     KC_5,     KC_6,     KC_7,    KC_8,  KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,  \
         KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,     KC_T,     KC_Y,     KC_U,    KC_I,  KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_NUBS,  \
-        FN_EXT,   KC_A,     KC_S,     KC_D,    FN_NAV_F, KC_G,     KC_H,     KC_J,    KC_K,  KC_L,     FN_NAV_SC,KC_QUOT,            KC_ENT,   \
+        FN_EXT,   KC_A,     KC_S,     FN_NAV_D,FN_NAV_F, KC_G,     KC_H,     KC_J,    KC_K,  KC_L,     FN_NAV_SC,KC_QUOT,            KC_ENT,   \
         KC_LSFT,  KC_Z,     KC_X,    KC_C,     KC_V,     KC_B,     KC_N,     KC_M,  KC_COMM, KC_DOT,   KC_SLSH,                      KC_RSFT,  \
-        KC_LCTL,  KC_LGUI,  KC_LALT,                            FN_SPACE_FN,                           KC_RALT,  KC_RGUI,  KC_APP,   KC_RCTL   \
+        KC_LCTL,  KC_LGUI,  KC_LALT,                            FN_SPACE_FN,                           KC_RALT,  KC_RGUI,  SFT_T(KC_APP),KC_RCTL   \
     ),
   [L_DEFAULT_ANSI] = LAYOUT_60_ansi(
         KC_ESC,   KC_1,     KC_2,     KC_3,    KC_4,     KC_5,     KC_6,     KC_7,    KC_8,  KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,  \
         KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,     KC_T,     KC_Y,     KC_U,    KC_I,  KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,  \
-        FN_EXT,   KC_A,     KC_S,     KC_D,    FN_NAV_F, KC_G,     KC_H,     KC_J,    KC_K,  KC_L,     FN_NAV_SC,KC_QUOT,            KC_ENT,   \
+        FN_EXT,   KC_A,     KC_S,     FN_NAV_D,FN_NAV_F, KC_G,     KC_H,     KC_J,    KC_K,  KC_L,     FN_NAV_SC,KC_QUOT,            KC_ENT,   \
         KC_LSFT,  KC_Z,     KC_X,    KC_C,     KC_V,     KC_B,     KC_N,     KC_M,  KC_COMM, KC_DOT,   KC_SLSH,                      KC_RSFT,  \
-        KC_LCTL,  KC_LGUI,  KC_LALT,                            FN_SPACE_FN,                           KC_RALT,  KC_RGUI,  KC_APP,   KC_RCTL   \
+        KC_LCTL,  KC_LGUI,  KC_LALT,                            FN_SPACE_FN,                           KC_RALT,  KC_RGUI,  SFT_T(KC_APP),KC_RCTL   \
     ),
 
     /* Keymap 2: Fixed F-Row Layer (using ISO backslash)
@@ -118,9 +119,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_DEFAULT_F_ROW] = LAYOUT_60_ansi(
         KC_ESC,   KC_F1,    KC_F2,    KC_F3,   KC_F4,    KC_F5,    KC_F6,    KC_F7,   KC_F8, KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_BSPC,  \
         KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,     KC_T,     KC_Y,     KC_U,    KC_I,  KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_NUBS,  \
-        FN_EXT,   KC_A,     KC_S,     KC_D,    FN_NAV_F, KC_G,     KC_H,     KC_J,    KC_K,  KC_L,     FN_NAV_SC,KC_QUOT,            KC_ENT,   \
+        FN_EXT,   KC_A,     KC_S,     FN_NAV_D,FN_NAV_F, KC_G,     KC_H,     KC_J,    KC_K,  KC_L,     FN_NAV_SC,KC_QUOT,            KC_ENT,   \
         KC_LSFT,  KC_Z,     KC_X,    KC_C,     KC_V,     KC_B,     KC_N,     KC_M,  KC_COMM, KC_DOT,   KC_SLSH,                      KC_RSFT,  \
-        KC_LCTL,  KC_LGUI,  KC_LALT,                            FN_SPACE_FN,                           KC_RALT,  KC_RGUI,  KC_APP,   KC_RCTL   \
+        KC_LCTL,  KC_LGUI,  KC_LALT,                            FN_SPACE_FN,                           KC_RALT,  KC_RGUI,  SFT_T(KC_APP),KC_RCTL   \
     ),
 
 
@@ -141,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_GAME] = LAYOUT_60_ansi(
         ______,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC, \
         ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,  \
-        ______,   ______,   ______,   ______,   KC_F,     ______,   ______,   ______,   ______,   ______,   ______,   ______,             ______,  \
+        ______,   ______,   ______,   KC_D,     KC_F,     ______,   ______,   ______,   ______,   ______,   ______,   ______,             ______,  \
         ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,                       ______, \
         ______,   XXXXXX,   ______,                       KC_SPC,                                           ______,   ______,   FN_NUM,   ______   \
     ),
@@ -163,8 +164,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_SPACE_FN] = LAYOUT_60_ansi(
         ______,   M_PIPE,   M_AT,     M_HASH,   ______,   ______,   ______,   ______,   ______,   M_LCBR,   M_RCBR,   KC_MINS,  KC_EQL,   KC_DEL, \
         ______,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,    KC_9,      KC_0,     M_LBRC,   M_RBRC,   M_BSLS, \
-        ______,   ______,   M_LBRC,   M_LCBR,   KC_5,     KC_3,     KC_4,     KC_0,     M_RCBR,  M_RBRC,    C_AACUTE, C_AGRAVE,           ______, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   C_TILDE,                      ______, \
+        ______,   S(KC_EQL),M_LBRC,   M_LCBR,   KC_5,     KC_3,     KC_4,     KC_MINS,  M_RCBR,  M_RBRC,    C_AACUTE, C_AGRAVE,           ______, \
+        ______,   ______,   C(KC_X),  C(KC_C),  C(KC_V),  ______,   ______,   ______,   ______,   ______,   C_TILDE,                      ______, \
         ______,   ______,   ______,                       ______,                                           ______,   ______,   ______,   ______ \
     ),
 
@@ -184,8 +185,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
   [L_NAVIGATION] = LAYOUT_60_ansi(
         ______,   M_PIPE,   M_AT,     M_HASH,   ______,   ______,   ______,   ______,   ______,   M_LCBR,   M_RCBR,   KC_MINS,  KC_EQL,   KC_DEL, \
-        ______,   KC_WH_U,  KC_BTN1,  KC_MS_U, KC_BTN2,   KC_BTN4,  KC_BTN5,  KC_HOME,  KC_UP,    KC_END,   ______,   M_LBRC,   M_RBRC,   M_BSLS, \
-        KC_CAPS,  KC_WH_D,  KC_MS_L,  KC_MS_D, KC_MS_R,   KC_BTN3,  KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, C_AACUTE, C_AGRAVE,           ______, \
+        ______,   KC_WH_U,  ______,   ______,   ______,   KC_BTN4,  KC_BTN5,  KC_HOME,  KC_UP,    KC_END,   ______,   M_LBRC,   M_RBRC,   M_BSLS, \
+        KC_CAPS,  KC_WH_D,  ______,   ______,   ______,   KC_BTN3,  KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, C_AACUTE, C_AGRAVE,           ______, \
         ______,   ______,   ______,   ______,   ______,   ______,   KC_PGDN,  M_WRDL,   M_WRDR,   ______,   C_TILDE,                      ______, \
         ______,   ______,   ______,                       ______,                                           ______,   ______,   ______,   ______ \
     ),
@@ -209,9 +210,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
   [L_EXTENDED] = LAYOUT_60_ansi(
         KC_GRV,   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_DEL, \
-        C_LCKEXT, KC_BTN4,  KC_WH_U,  KC_BTN5,  ______,   M_TM,     KC_CALC,  KC_HOME,  KC_UP,    KC_END,   ______,   KC_PSCR,  KC_PAUSE, KC_INS, \
-        ______,   KC_WH_L,  KC_WH_D,  KC_WH_R,  ______,   ______,   KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, ______,   KC_NUHS,         FN_CONFIG, \
-        ______,   ______,   ______,   ______,   ______,   ______,   KC_PGDN,  ______,   KC_VOLD,  KC_VOLU,  KC_MUTE,                      ______, \
+        C_LCKEXT, KC_BTN1,  KC_MS_U,  KC_BTN2,  KC_WH_U,   M_TM,     KC_CALC,  KC_HOME,  KC_UP,    KC_END,   ______,   KC_PSCR,  KC_PAUSE, KC_INS, \
+        ______,   KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_WH_D,   ______,   KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, ______,   KC_NUHS,         FN_CONFIG, \
+        ______,   KC_WH_L,  KC_WH_R,  ______,   ______,   ______,   KC_PGDN,  ______,   KC_VOLD,  KC_VOLU,  KC_MUTE,                      ______, \
         ______,   ______,   ______,                       ______,                                           ______,   ______,   FN_NUM,   ______  \
   ),
 
@@ -273,9 +274,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
   [L_CONFIG] = LAYOUT_60_ansi(
         FN_GAME,  DL_ISO,   DL_ANSI,  DL_FROW,  ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   RESET,  \
-        ______,   KC_ACL0,  KC_ACL1,  KC_ACL2,  ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,          FN_CONFIG, \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,                       ______, \
+        ______,   EF_INC,   ES_INC,   S1_INC,   H1_INC,   S2_INC,   H2_INC,   BR_INC,   ______,   ______,   ______,   ______,   ______,   ______, \
+        ______,   EF_DEC,   ES_DEC,   S1_DEC,   H1_DEC,   S2_DEC,   H2_DEC,   BR_DEC,   ______,   ______,   ______,   ______,          FN_CONFIG, \
+        ______,   KC_ACL0,  KC_ACL1,  KC_ACL2,  ______,   ______,   ______,   ______,   ______,   ______,   ______,                       ______, \
         ______,   ______,   ______,                       ______,                                           ______,   ______,   ______,   ______ \
   )
 };

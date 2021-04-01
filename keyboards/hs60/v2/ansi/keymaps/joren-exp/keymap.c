@@ -163,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [L_SPACE_FN] = LAYOUT_60_ansi(
         ______,   M_PIPE,   M_AT,     M_HASH,   ______,   ______,   ______,   ______,   ______,   M_LCBR,   M_RCBR,   KC_MINS,  KC_EQL,   KC_DEL, \
         ______,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,    KC_9,      KC_0,     M_LBRC,   M_RBRC,   M_BSLS, \
-        KC_CAPS,  ______,   M_LBRC,   M_LCBR,   KC_5,     KC_3,     KC_4,     KC_0,     M_RCBR,  M_RBRC,    C_AACUTE, C_AGRAVE,           ______, \
+        ______,   ______,   M_LBRC,   M_LCBR,   KC_5,     KC_3,     KC_4,     KC_0,     M_RCBR,  M_RBRC,    C_AACUTE, C_AGRAVE,           ______, \
         ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   C_TILDE,                      ______, \
         ______,   ______,   ______,                       ______,                                           ______,   ______,   ______,   ______ \
     ),
@@ -172,9 +172,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * ,-----------------------------------------------------------.
      * |   |  ||  @|  #|   |   |   |   |   | { | } |   |   | Delete|
      * |-----------------------------------------------------------|
-     * |     |   |   | € |   |Mb4|Mb5|Hom|Up |End|   |  [|  ]|    \|
+     * |     |MWu|Mb1|MUp|Mb2|Mb4|Mb5|Hom|Up |End|   |  [|  ]|    \|
      * |-----------------------------------------------------------|
-     * |CAPS  |   |   |VDL|VDR|   |PgU|Lef|Dow|Rig|  ´|  `|        |
+     * |CAPS  |MWd|MLt|MDn|MRt|Mb3|PgU|Lef|Dow|Rig|  ´|  `|        |
      * |-----------------------------------------------------------|
      * |        |   |   |Spc|Spc|Spc|PgD|WLe|WRi|   |  ~|          |
      * |-----------------------------------------------------------|
@@ -182,10 +182,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * `-----------------------------------------------------------'
      * Br: Browser (forward/back)
      */
-  [L_SPACE_FN] = LAYOUT_60_ansi(
-        ______,   M_PIPE,   M_AT,     M_HASH,   ______,   ______,   ______,   ______,   ______,   M_LCBR,   M_RCBR,   ______,   ______,   KC_DEL, \
-        ______,   ______,   ______,   M_EUR,    ______,   KC_BTN4,  KC_BTN5,  KC_HOME,  KC_UP,    KC_END,   ______,   M_LBRC,   M_RBRC,   M_BSLS, \
-        KC_CAPS,  ______,   ______,   M_VDL,    M_VDR,    ______,   KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, C_AACUTE, C_AGRAVE,           ______, \
+  [L_NAVIGATION] = LAYOUT_60_ansi(
+        ______,   M_PIPE,   M_AT,     M_HASH,   ______,   ______,   ______,   ______,   ______,   M_LCBR,   M_RCBR,   KC_MINS,  KC_EQL,   KC_DEL, \
+        ______,   KC_WH_U,  KC_BTN1,  KC_MS_U, KC_BTN2,   KC_BTN4,  KC_BTN5,  KC_HOME,  KC_UP,    KC_END,   ______,   M_LBRC,   M_RBRC,   M_BSLS, \
+        KC_CAPS,  KC_WH_D,  KC_MS_L,  KC_MS_D, KC_MS_R,   KC_BTN3,  KC_PGUP,  KC_LEFT,  KC_DOWN,  KC_RIGHT, C_AACUTE, C_AGRAVE,           ______, \
         ______,   ______,   ______,   ______,   ______,   ______,   KC_PGDN,  M_WRDL,   M_WRDR,   ______,   C_TILDE,                      ______, \
         ______,   ______,   ______,                       ______,                                           ______,   ______,   ______,   ______ \
     ),
@@ -248,9 +248,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |-----------------------------------------------------------|
      * |    |    |    |                       0|   .|    |Exit|NmLc|
      * `-----------------------------------------------------------'
-     * Mb: Mouse Button
-     * Mw: Mouse Wheel
-     * Mc: Mouse Cursor
      */
   [L_NUMPAD] = LAYOUT_60_ansi(
         ______,   KC_P1,    KC_P2,    KC_P3,    KC_P4,    KC_P5,    KC_P6,    KC_P7,    KC_P8,    KC_P9,    KC_P0,    KC_PMNS,  KC_PPLS,  KC_BSPC, \
@@ -262,11 +259,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* Overlay: Layout selection layer
      * ,-----------------------------------------------------------.
-     * |   |ISO|ANS|   |   |   |   |   |   |   |   |   |   |BootLdr|
+     * |Gm |ISO|ANS|FRW|   |   |   |   |   |   |   |   |   |BootLdr|
      * |-----------------------------------------------------------|
      * |     |   |   |   |   |   |   |   |   |   |   |   |   |     |
      * |-----------------------------------------------------------|
-     * |      |   |   |   |   |Gm |   |   |   |   |   |   |ConfigFN|
+     * |      |   |   |   |   |   |   |   |   |   |   |   |ConfigFN|
      * |-----------------------------------------------------------|
      * |        |   |   |   |   |   |   |   |   |   |   |          |
      * |-----------------------------------------------------------|
@@ -276,7 +273,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
   [L_CONFIG] = LAYOUT_60_ansi(
         FN_GAME,  DL_ISO,   DL_ANSI,  DL_FROW,  ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   RESET,  \
-        ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______, \
+        ______,   KC_ACL0,  KC_ACL1,  KC_ACL2,  ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______, \
         ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,          FN_CONFIG, \
         ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,   ______,                       ______, \
         ______,   ______,   ______,                       ______,                                           ______,   ______,   ______,   ______ \

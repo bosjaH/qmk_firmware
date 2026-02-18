@@ -3,6 +3,9 @@
 // USB detection
 #define USB_VBUS_PIN 19
 
+#define BOOTMAGIC_ROW_RIGHT 5
+#define BOOTMAGIC_COLUMN_RIGHT 0
+
 // Split handedness
 #define	SPLIT_HAND_PIN_LOW_IS_LEFT
 #define SPLIT_HAND_PIN GP4
@@ -38,4 +41,5 @@
     #define SPLIT_TRANSPORT_MIRROR
     #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
     #define RGB_MATRIX_KEYPRESSES
+    #define RGB_MATRIX_DEFAULT_FLAGS 7 // LED_FLAG_KEYLIGHT | LED_FLAG_MODIFIER | LED_FLAG_UNDERGLOW (excludes indicator)
 #endif

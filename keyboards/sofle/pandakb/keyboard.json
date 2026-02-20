@@ -13,10 +13,6 @@
         "cols": ["GP27", "GP26", "GP22", "GP20", "GP23", "GP21"],
         "rows": ["GP5", "GP6", "GP7", "GP8", "GP9"]
     },
-    "debounce": 5,
-    "tapping": {
-        "term": 100
-    },
     "encoder": {
         "rotary": [{ "pin_a": "GP28", "pin_b": "GP29", "resolution": 4 }]
     },
